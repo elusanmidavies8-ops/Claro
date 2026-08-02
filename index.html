@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=jetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" sizes="32x32" href="android-chrome-192x192.png">
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="style.css">
     </head>
     <body>
     <main>
@@ -37,6 +37,9 @@
     <div id="onboarding" class="screen">
             <div id="step-1" class="step">
                 <div class="logo">🧭</div>
+                <div class="progress-container">
+                    <progress value="20" max="100"></progress>
+                </div>
                 <h6>01 / 05</h6>
                 <h2>What best describes you right now?</h2>
                 <label class="opt">
@@ -59,53 +62,180 @@
                     <span class="check"></span>
                     🌀 Just figuring things out
                 </label>
-                </div>
-                    <button id="start-button2">
-                      <span id="btn-text2">Continue ➔ </span>
-                      <div class="spinner" id="btn-spinner2"></div>
-                    </button>
-                </div>
-            </diV>
-        </div>
+            </div>
+            <button id="start-button2" type="button" disabled>
+                <span id="btn-text2">Continue ➔ </span>
+                <div class="spinner" id="btn-spinner2"></div>
+            </button>
+    </div>
         <!-- This is the second onboarding screen -->
         <div id="onboarding-2" class="screen">
             <div id="step-2" class="step">
                 <div class="logo">🎯</div>
+                <div class="progress-container">
+                  <progress value="40" max="100"></progress>
+                </div>
                 <h6>02 / 05</h6>
                 <h2 class="main-txt">What are your top priorities?</h2>
                 <p class="note">// pick up to 3</p>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    📚 Academic performance
+                    <p>📚 Academic performance</p>
                 </label>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    🤹 Build a skill
+                    <p>🤹 Build a skill</p>
                 </label>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    🏋️‍♂️ Get healthier
+                    <p>🏋️‍♂️ Get healthier</p>
                 </label>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    🧘‍♂️ Personal growth
+                    <p>🧘‍♂️ Personal growth</p>
                 </label>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    💰 Make money on the side
+                    <p>💰 Make money on the side</p>
                 </label>
                 <label class="opt">
                     <input type="checkbox" name="priority">
                     <span class="check"></span>
-                    📝 Be more organised
+                    <p>📝 Be more organised</p>
                 </label>
-                <button class="continue-btn">Continue ➔ </button>
-            </diV>
+            </div>
+            <button id="start-button3" type="button" disabled>
+                <span id="btn-text3">Continue ➔ </span>
+                <div class="spinner" id="btn-spinner3"></div>
+            </button>
+        </div>
+        <!-- This is the third onboarding screen -->
+        <div id="onboarding-3" class="screen">
+            <div id="step-3" class="step">
+                <div class="logo">⏰</div>
+                <div class="progress-container">
+                  <progress value="60" max="100"></progress>
+                </div>
+                <h6>03 / 05</h6>
+                <h2 class="main-txt">⏱️ How many hours do you have a day?</h2>
+                <label class="opt">
+                    <input type="radio" name="hours" value="less-than-2">
+                    <span class="check"></span>
+                    <p>⏱️ Less than 2 hours</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="hours" value="2-to-4">
+                    <span class="check"></span>
+                    <p>⏱️ 2 to 4 hours</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="hours" value="4-to-6">
+                    <span class="check"></span>
+                    <p>⏱️ 4 to 6 hours</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="hours" value="more-than-6">
+                    <span class="check"></span>
+                    <p>⏱️ More than 6 hours</p>
+                </label>
+            </div>
+            <button id="start-button4" type="button" disabled>
+                <span id="btn-text4">Continue ➔ </span>
+                <div class="spinner" id="btn-spinner4"></div>
+            </button>  
+        </div>
+        <!-- This is the fourth onboarding screen -->
+        <div id="onboarding-4" class="screen">
+            <div id="step-4" class="step">
+                <div class="logo">⚡️</div>
+                <div class="progress-container">
+                  <progress value="80" max="100"></progress>
+                </div>
+                <h6>04 / 05</h6>
+                <h2 class="main-txt">What's your biggest challenge right now?</h2>
+                <label class="opt">
+                    <input type="radio" name="goal">
+                    <span class="check"></span>
+                    <p>⏳ You can't manage your time</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="goal">
+                    <span class="check"></span>
+                    <p>🔋 I lose motivation easily</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="goal">
+                    <span class="check"></span>
+                    <p>🌀 I don't know where to start</p>
+                </label>
+                <label class="opt">
+                    <input type="radio" name="goal">
+                    <span class="check"></span>
+                    <p>📵 I get distracted too often</p>
+                </label>
+            </div>
+            <button id="start-button5" type="button" disabled>
+                <span id="btn-text5">Continue ➔ </span>
+                <div class="spinner" id="btn-spinner5"></div>
+            </button>
+        </div>
+        <div id="onboarding-5" class="screen">
+            <div id="step-5" class="step">
+                <div class="logo">✨</div>
+            </div>
+            <div class="progress-container">
+                <progress value="100" max="100"></progress>
+            </div>
+            <h6>05 / 05</h6>
+            <h2 class="main-txt">Last one — what should Claro call you?</h2>
+            <input type="text" id="txt-input" placeholder="Your name....">
+            <button id="start-button6" type="button">
+                <span id="btn-text6">Build my plan ➔ </span>
+                <div class="spinner" id="btn-spinner6"></div>
+            </button>
+        </div>
+        <div id="loading" class="screen">
+            <div class="load-cotent">
+            <div class="load-ring">
+                <div>
+                    <img src=favicon.png alt="Claro logo" id="load-icon">
+                </div>
+            </div>
+                <p class="load-txt">Building your personal plan, <br>
+                <strong id="load-name">Friend</strong>.<br><br>
+                This takes just a moment.</p>
+            </div>
+        </div>
+        <div id="onboarding-7" class="screen">
+            <div id="step-7" class="step">
+                <p style="text-align: left;">Welcome to Claro!</p>
+                <h1 class="main-txt" id="greetings"></h1>
+                <p id="plan-txt" class="txt-7"></p>
+                <hr>
+                <p class="txt-7">YOUR WEEKLY TIMETABLE</p>
+                <div id="timetable"></div>
+                <div id="goal-tracker">
+                    <p class="txt-7">🌱 Personal Growth</p>
+                    <div class="goal-row">
+                        <span>Progress</span>
+                        <div class="goal-bar"><div class="goal-fill" id="progress-fill"></div></div>
+                    </div>
+                    <p id="growth-status" class="growth-status">You are building steady momentum.</p>
+                    <p id="growth-count" class="growth-count">0 of 35 tasks complete</p>
+                </div>
+                <div class="unlock-card" id="unlock-card">
+                        <span>💡</span>
+                        <div>
+                            <p class="unlock-title">Discover side hustle ideas</p>
+                            <p class="unlock-sub">Tap to find opportunities that fit your schedule</p>
+                        </div>
+                        <span>➔</span>
+                </div>
         </div>
     </main>
     <script src="script.js"></script>
