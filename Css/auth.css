@@ -1,0 +1,50 @@
+.form-fieldset{
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+input{
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+label{
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: white;
+}
+input[type="submit"]{
+    background-color: #739c13;
+    color: white;
+    border: none;
+    cursor: pointer;
+    width:50%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+legend{
+    color: white;
+    font-size: 1em;
+    margin-bottom: 10px;
+}
+p{
+    color: white;
+    text-align: center;
+}
+form-fieldset{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.form:hover{
+    border: 2px solid #739c13;
+}
+.form:focus{
+    outline: none;
+}

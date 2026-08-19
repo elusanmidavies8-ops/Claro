@@ -1,0 +1,94 @@
+body{
+    background-color: #0D0D0D;
+}
+p{
+    color: #8A8580;
+    font-family: Inter, sans-serif;
+    text-align: center;
+}
+h6{
+    font-family: Syne, sans-serif;
+    color: #739c13;
+}
+h1{
+    font-family: Syne, sans-serif;
+    color: #739c13;
+    display: inline;
+    font-size: 3em;
+}
+.feature-card{
+    background-color: #1A1A1A;
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 10px;
+}
+#color{
+    color: #f5f0e8;
+}
+.main-txt{
+    color: #f5f0e8;
+    font-family: JetBrains Mono, monospace;
+}
+.feature-card{
+    background-color: #1A1A1A;
+    border: 1px solid #333;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+#start-button{
+    background-color: #739c13;
+    color: #f5f0e8;
+    border: none;
+    padding: 10px 20px;
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    border-radius: 5px;
+    width: 50%;
+}
+.note{
+    text-align: center;
+    font-family: JetBrains Mono, monospace;
+    color: #8A8580;
+    margin-top: 12px;
+    font-size: 12px;
+}
+.feature-card:hover,
+.feature-card:active{
+    transform: translateY(-4px);
+    border-color: #739c13;
+}
+
+
+main{
+    max-width: 480px;
+    margin: 0 auto;
+}
+#onboarding{
+    color: #f5f0e8;
+}
+.spinner{
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    display: none;
+    margin: auto;
+}
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+#btn-spinner{
+    display: none;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
