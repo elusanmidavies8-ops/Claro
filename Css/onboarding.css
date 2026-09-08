@@ -247,9 +247,27 @@ hr{
     background-color: #333;
     margin: 20px 0;
 }
-.screen{
+/* ...existing code... */
+
+/* ensure only the active screen is visible */
+.screen {
     display: none;
+    opacity: 0;
+    transform: translateX(6%);
+    transition: opacity 220ms ease, transform 260ms ease;
+    pointer-events: none;
 }
-.screen.active{
+.screen.active {
     display: block;
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
 }
+
+/* optional exit state if you want a slide-out look */
+.screen.exit-left {
+    opacity: 0;
+    transform: translateX(-6%);
+}
+
+/* ...existing code... */
