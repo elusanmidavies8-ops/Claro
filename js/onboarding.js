@@ -78,3 +78,4 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ev.key === 'ArrowLeft') showScreen(Math.max(current - 1, 0), true);
   });
 });
+// for the logo loading to task.html

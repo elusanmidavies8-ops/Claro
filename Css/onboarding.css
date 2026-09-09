@@ -6,6 +6,7 @@
     border-radius: 8px;
     padding: 12px;
     background-color: transparent;
+    color: var(--color-text)
 }
 .check{
     width: 18px;
@@ -123,83 +124,6 @@ progress::-webkit-progress-bar {
     justify-content: center;
     text-align: center;
 }
-#timetable {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-    margin-top: 12px;
-}
-.timetable-item {
-    background: linear-gradient(135deg, #1A1A1A, #121212);
-    border: 1px solid #3a3a3a;
-    border-left: 3px solid #739c13;
-    border-radius: 10px;
-    padding: 10px;
-    color: #f5f0e8;
-    font-family: Inter, sans-serif;
-    font-size: 13px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-}
-.timetable-item summary {
-    cursor: pointer;
-    color: #c8f560;
-    font-weight: 600;
-}
-.task-list {
-    margin-top: 8px;
-    display: grid;
-    gap: 6px;
-}
-.task-item {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #f5f0e8;
-}
-.task-item input {
-    accent-color: #739c13;
-}
-#goal-tracker {
-    margin-top: 14px;
-    padding: 12px;
-    background: #121212;
-    border: 1px solid #333;
-    border-radius: 10px;
-}
-.goal-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin: 8px 0;
-    color: #f5f0e8;
-    font-size: 13px;
-}
-.goal-bar {
-    width: 100%;
-    max-width: 220px;
-    height: 8px;
-    background: #2a2a2a;
-    border-radius: 999px;
-    overflow: hidden;
-    margin-left: 10px;
-}
-.goal-fill {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, #739c13, #c8f560);
-    border-radius: inherit;
-    transition: width 0.2s ease;
-}
-.growth-status {
-    margin-top: 8px;
-    color: #c8f560;
-    font-size: 13px;
-}
-.growth-count {
-    margin-top: 6px;
-    color: #8A8580;
-    font-size: 12px;
-}
 .load-ring {
     width: 90px;
     height: 90px;
@@ -247,7 +171,6 @@ hr{
     background-color: #333;
     margin: 20px 0;
 }
-/* ...existing code... */
 
 /* ensure only the active screen is visible */
 .screen {
@@ -264,10 +187,10 @@ hr{
     pointer-events: auto;
 }
 
-/* optional exit state if you want a slide-out look */
 .screen.exit-left {
     opacity: 0;
     transform: translateX(-6%);
 }
-
-/* ...existing code... */
+h2{
+    color: var(--color-text)
+}
