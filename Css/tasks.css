@@ -1,0 +1,63 @@
+ /* Task UI tokens-based styling */
+        .task-container{
+            padding:16px;max-width:720px;margin:0 auto
+        }
+        .top-row{
+            display:flex;justify-content:space-between;align-items:center;margin-bottom:12px
+        }
+        .welcome-box{
+            display:flex;flex-direction:column
+        }
+        .greeting-small{
+            color:var(--color-grey);font-family:Inter, sans-serif
+        }
+        .greeting-large{
+            font-family:Syne, sans-serif;color:var(--color-primary);margin:0
+        }
+        .task-add{
+            display:flex;gap:8px;margin:16px 0
+        }
+        .task-add input{
+            flex:1;padding:12px;border-radius:10px;border:1px solid var(--color-border);background:#fff
+        }
+        .task-add button{
+            background:var(--color-primary);color:var(--color-text);border:none;padding:10px 14px;border-radius:10px
+        }
+        .tasks-list{
+            display:flex;flex-direction:column;gap:10px
+        }
+        /* tasks created by js use class .task; keep .task-card for future markup */
+        .task-card, .task{
+            background:var(--color-bg);padding:12px;border-radius:10px;display:flex;align-items:center;gap:12px;border:1px solid var(--color-border)
+        }
+        .task .title, .task-card .title{
+            flex:1;color:var(--color-text)
+        }
+        .task .meta, .task-card .meta{
+            color:var(--color-grey);font-size:12px
+        }
+        .task button, .task-card button{
+            background:transparent;border:none;color:var(--color-grey);cursor:pointer
+        }
+        .task-container{
+            padding:12px
+        }
+        .task-add{
+            display:flex;gap:8px;margin-bottom:12px
+        }
+        .task-add input{
+            flex:1;padding:8px
+        }
+        .task{
+            display:flex;align-items:center;gap:8px;padding:8px;border-bottom:1px solid #eee
+        }
+        .task .title{
+            flex:1;outline:none
+        }
+        .task .del{
+            background:#ff4d4f;border:none;color:white;padding:6px 8px;border-radius:6px
+        }
+        .tasks{
+            margin-top: 2em;
+            margin-bottom: 3em;
+        }

@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     current = idx;
     if (push) history.pushState({ idx }, '', `#step-${idx + 1}`);
+    try { scheduleRedirectIfStep5(idx); } catch (e) { /* ignore if scheduler not ready */ }
   }
 
   screens.forEach((screen, i) => {
@@ -78,4 +79,42 @@ document.addEventListener('DOMContentLoaded', () => {
     if (ev.key === 'ArrowLeft') showScreen(Math.max(current - 1, 0), true);
   });
 });
-// for the logo loading to task.html
+
+// redirect to task.html 5s after showing step 5 (index 4)
+let _redirectTimer = null;
+function scheduleRedirectIfStep5(idx) {
+  clearTimeout(_redirectTimer);
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  const isLast = screens.length && idx === screens.length - 1;
+  const isStep5 = idx === 4 || isLast || (screens[idx] && screens[idx].id === 'loading');
+  if (isStep5) {
+    // update loading screen name from saved name or current input
+    const name = (function() {
+      try { return localStorage.getItem('claro_name') || document.querySelector('#txt-input')?.value || 'Friend'; } catch (e) { return document.querySelector('#txt-input')?.value || 'Friend'; }
+    })();
+    const loadName = document.querySelector('#load-name');
+    if (loadName) loadName.textContent = name;
+    _redirectTimer = setTimeout(() => { window.location.href = 'task.html'; }, 5000);
+  }
+}
+
+// If the script loads and the DOM already has step 5 active, schedule redirect
+document.addEventListener('DOMContentLoaded', () => {
+  const screens = Array.from(document.querySelectorAll('.screen'));
+  if (!screens.length) return;
+  const current = screens.findIndex(s => s.classList.contains('active'));
+  scheduleRedirectIfStep5(current === -1 ? 0 : current);
+  // persist name as user types so task page can read it
+  const nameInput = document.querySelector('#txt-input');
+  if (nameInput) {
+    // initialize from storage if present
+    try {
+      const stored = localStorage.getItem('claro_name');
+      if (stored) nameInput.value = stored;
+    } catch (e) { /* ignore */ }
+    nameInput.addEventListener('input', (ev) => {
+      const v = ev.target.value.trim();
+      try { localStorage.setItem('claro_name', v); } catch (e) { /* ignore */ }
+    });
+  }
+});
