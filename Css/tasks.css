@@ -1,63 +1,605 @@
- /* Task UI tokens-based styling */
-        .task-container{
-            padding:16px;max-width:720px;margin:0 auto
-        }
-        .top-row{
-            display:flex;justify-content:space-between;align-items:center;margin-bottom:12px
-        }
-        .welcome-box{
-            display:flex;flex-direction:column
-        }
-        .greeting-small{
-            color:var(--color-grey);font-family:Inter, sans-serif
-        }
-        .greeting-large{
-            font-family:Syne, sans-serif;color:var(--color-primary);margin:0
-        }
-        .task-add{
-            display:flex;gap:8px;margin:16px 0
-        }
-        .task-add input{
-            flex:1;padding:12px;border-radius:10px;border:1px solid var(--color-border);background:#fff
-        }
-        .task-add button{
-            background:var(--color-primary);color:var(--color-text);border:none;padding:10px 14px;border-radius:10px
-        }
-        .tasks-list{
-            display:flex;flex-direction:column;gap:10px
-        }
-        /* tasks created by js use class .task; keep .task-card for future markup */
-        .task-card, .task{
-            background:var(--color-bg);padding:12px;border-radius:10px;display:flex;align-items:center;gap:12px;border:1px solid var(--color-border)
-        }
-        .task .title, .task-card .title{
-            flex:1;color:var(--color-text)
-        }
-        .task .meta, .task-card .meta{
-            color:var(--color-grey);font-size:12px
-        }
-        .task button, .task-card button{
-            background:transparent;border:none;color:var(--color-grey);cursor:pointer
-        }
-        .task-container{
-            padding:12px
-        }
-        .task-add{
-            display:flex;gap:8px;margin-bottom:12px
-        }
-        .task-add input{
-            flex:1;padding:8px
-        }
-        .task{
-            display:flex;align-items:center;gap:8px;padding:8px;border-bottom:1px solid #eee
-        }
-        .task .title{
-            flex:1;outline:none
-        }
-        .task .del{
-            background:#ff4d4f;border:none;color:white;padding:6px 8px;border-radius:6px
-        }
-        .tasks{
-            margin-top: 2em;
-            margin-bottom: 3em;
-        }
+/* ==========================================
+   CLARO — DAILY TASK UI
+   ========================================== */
+
+.task-container {
+  width: 100%;
+  margin: 32px auto;
+  color: #a6a6a6;
+  font-family: inherit;
+}
+
+.task-shell {
+  width: min(1100px, 92%);
+  max-width: none;
+  margin: 0 auto;
+  padding: 24px 0 56px;
+}
+
+.task-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #303030;
+}
+
+.task-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  color: #f5f0e8;
+  font-family: Syne, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.task-brand img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+.task-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.task-nav a {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 40px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  color: #999;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.task-nav a:hover,
+.task-nav a.active {
+  border-color: #333;
+  background: #202020;
+  color: #f5f0e8;
+}
+
+.task-nav a:focus-visible,
+.task-brand:focus-visible {
+  outline: 2px solid #a7d64b;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   GREETING
+   ========================================== */
+
+#greetings {
+  margin-bottom: 35px;
+}
+
+#greetings .today-label {
+  color: #6f6f6f;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+#greetings .welcome-message {
+  color: #b5b5b5;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+}
+
+
+/* ==========================================
+   DAY OVERVIEW
+   ========================================== */
+
+.day-overview {
+  padding: 24px 0 30px;
+  border-bottom: 1px solid #303030;
+}
+
+.overview-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section-label {
+  margin: 0 0 7px;
+  color: #666;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.overview-heading h2 {
+  margin: 0;
+  color: #b0b0b0;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+.progress-summary {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 3px;
+}
+
+.progress-summary strong {
+  color: #a8a8a8;
+  font-size: 1rem;
+}
+
+.progress-summary span {
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 5px;
+  margin-top: 22px;
+  overflow: hidden;
+  background: #292929;
+  border-radius: 999px;
+}
+
+#progress-fill {
+  width: 0;
+  height: 100%;
+  background: #777;
+  border-radius: inherit;
+  transition: width 0.3s ease;
+}
+
+
+/* ==========================================
+   SECTION HEADINGS
+   ========================================== */
+
+.now-section,
+.up-next-section {
+  margin-top: 40px;
+}
+
+.section-heading {
+  margin-bottom: 15px;
+}
+
+.section-heading span {
+  color: #707070;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+
+/* ==========================================
+   CURRENT TASK
+   ========================================== */
+
+.current-task {
+  padding: 25px;
+  background: #1d1d1d;
+  border: 1px solid #303030;
+  border-radius: 14px;
+}
+
+.current-task-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.current-task .task-icon {
+  font-size: 1.7rem;
+}
+
+.current-task-status {
+  color: #777;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.current-task-content {
+  margin-bottom: 22px;
+}
+
+.current-task-title {
+  color: #b5b5b5;
+  font-size: clamp(1.3rem, 3vw, 1.8rem);
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.current-task-time {
+  color: #777;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+}
+
+.current-task-description {
+  margin: 0;
+  color: #888;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.current-task-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.complete-current {
+  padding: 10px 16px;
+  border: 1px solid #444;
+  border-radius: 8px;
+  background: #292929;
+  color: #a8a8a8;
+  font: inherit;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.complete-current:hover {
+  background: #333;
+  color: #c0c0c0;
+}
+
+
+/* ==========================================
+   UP NEXT — TASK LIST
+   ========================================== */
+
+#tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/*
+  Your JS creates each task as an element
+  containing:
+  .task-check
+  .task-icon
+  .task-content
+  .task-top
+  .title
+  .task-time
+  .task-description
+  .del
+*/
+
+#tasks-list > div {
+  display: grid;
+  grid-template-columns: 30px 40px 1fr auto;
+  align-items: center;
+  gap: 14px;
+
+  padding: 17px 18px;
+
+  background: #1b1b1b;
+  border: 1px solid #2d2d2d;
+  border-radius: 11px;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+#tasks-list > div:hover {
+  background: #202020;
+  border-color: #3a3a3a;
+}
+
+
+/* ==========================================
+   CHECKBOX
+   ========================================== */
+
+.task-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.task-check input {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.checkmark {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background: #202020;
+  transition: 0.2s ease;
+}
+
+.task-check input:checked + .checkmark {
+  background: #777;
+  border-color: #777;
+}
+
+.task-check input:checked + .checkmark::after {
+  content: "✓";
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  height: 100%;
+
+  color: #171717;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* ==========================================
+   TASK ICON
+   ========================================== */
+
+#tasks-list .task-icon {
+  font-size: 1.35rem;
+  text-align: center;
+}
+
+
+/* ==========================================
+   TASK CONTENT
+   ========================================== */
+
+.task-content {
+  min-width: 0;
+}
+
+.task-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.task-top .title {
+  color: #aaa;
+  font-size: 1rem;
+  font-weight: 600;
+  outline: none;
+}
+
+.task-top .title:focus {
+  color: #c0c0c0;
+}
+
+.task-time {
+  flex-shrink: 0;
+  color: #666;
+  font-size: 0.75rem;
+}
+
+.task-description {
+  margin-top: 5px;
+  color: #777;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+
+/* ==========================================
+   DELETE BUTTON
+   ========================================== */
+
+.del {
+  width: 30px;
+  height: 30px;
+
+  border: 0;
+  border-radius: 7px;
+
+  background: transparent;
+  color: #666;
+
+  font-size: 1.2rem;
+  cursor: pointer;
+
+  transition: 0.2s ease;
+}
+
+.del:hover {
+  background: #292929;
+  color: #aaa;
+}
+
+
+/* ==========================================
+   EMPTY STATES
+   ========================================== */
+
+.empty-now,
+.empty-list {
+  padding: 25px;
+  border: 1px dashed #333;
+  border-radius: 12px;
+  color: #777;
+}
+
+.empty-now {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.empty-icon {
+  font-size: 1.5rem;
+}
+
+.empty-now strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #aaa;
+}
+
+.empty-now p {
+  margin: 0;
+  color: #707070;
+}
+
+.empty-list {
+  text-align: center;
+}
+
+
+/* ==========================================
+   ADD TASK
+   ========================================== */
+
+.task-add {
+  display: flex;
+  gap: 10px;
+  margin-top: 35px;
+  padding-top: 25px;
+  border-top: 1px solid #303030;
+}
+
+#new-task {
+  flex: 1;
+  min-width: 0;
+
+  padding: 13px 15px;
+
+  border: 1px solid #353535;
+  border-radius: 9px;
+
+  background: #1b1b1b;
+  color: #aaa;
+
+  font: inherit;
+  outline: none;
+}
+
+#new-task::placeholder {
+  color: #5f5f5f;
+}
+
+#new-task:focus {
+  border-color: #555;
+}
+
+#add-btn {
+  padding: 13px 18px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #777;
+  color: #171717;
+
+  font: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+#add-btn:hover {
+  background: #888;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+   ========================================== */
+
+@media (max-width: 700px) {
+
+  .task-shell {
+    width: 92%;
+    padding-top: 16px;
+  }
+
+  .task-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .task-nav {
+    width: 100%;
+  }
+
+  .task-nav a {
+    flex: 1;
+    justify-content: center;
+    padding-inline: 8px;
+  }
+
+  .task-container {
+    margin: 25px auto;
+  }
+
+  .overview-heading {
+    align-items: flex-start;
+  }
+
+  .progress-summary {
+    align-items: flex-start;
+  }
+
+  #tasks-list > div {
+    grid-template-columns: 25px 35px 1fr 25px;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .task-top {
+    display: block;
+  }
+
+  .task-time {
+    display: block;
+    margin-top: 4px;
+  }
+
+  .task-add {
+    flex-direction: column;
+  }
+
+  #add-btn {
+    width: 100%;
+  }
+}
+
+
+@media (max-width: 450px) {
+
+  .current-task {
+    padding: 18px;
+  }
+
+  .task-top .title {
+    font-size: 0.95rem;
+  }
+
+  .task-description {
+    font-size: 0.8rem;
+  }
+
+  .current-task-description {
+    font-size: 0.88rem;
+  }
+}

@@ -50,6 +50,7 @@ h1{
     margin: 0 auto;
     border-radius: 5px;
     width: 50%;
+    text-align: center;
 }
 .note{
     text-align: center;
@@ -85,8 +86,11 @@ main{
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
-#btn-spinner{
+#start-button.is-loading #btn-text{
     display: none;
+}
+#start-button.is-loading #btn-spinner{
+    display: block;
 }
 a{
     color: var(--color-text);
