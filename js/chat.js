@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     input.focus();
   });
 
-  function sendMessage(value) {
+  async function sendMessage(value) {
     const text = value.trim();
 
     if (!text || isThinking) return;
@@ -77,14 +77,36 @@ document.addEventListener('DOMContentLoaded', () => {
     renderConversation();
     updateSendButton();
 
-    responseTimer = window.setTimeout(() => {
-      messages.push({ role: 'assistant', text: getCoachReply(text) });
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || ('Request failed (' + response.status +')'));
+      }
+
+      messages.push({
+        role: 'assistant',
+        text: data.reply || 'I received an empty response. Please try again.'
+      });
+    } catch (error) {
+      console.error('Claro chat error:', error);
+      messages.push({
+        role: 'assistant',
+        text: 'Sorry, I couldn’t get a response just now. Please check your connection and try again.'
+      });
+    } finally {
       isThinking = false;
       saveMessages();
       renderConversation();
       updateSendButton();
       input.focus();
-    }, 650);
+    }
   }
 
   function renderConversation() {
@@ -147,6 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
   function updateSendButton() {
     sendButton.disabled = isThinking || !input.value.trim();
     sendButton.classList.toggle('is-loading', isThinking);
+    sendButton.setAttribute('aria-busy', String(isThinking));
     sendButton.setAttribute('aria-label', isThinking ? 'Claro is replying' : 'Send message');
   }
 

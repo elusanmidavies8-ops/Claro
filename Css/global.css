@@ -73,24 +73,40 @@ main{
 #onboarding{
     color: var(--color-text);
 }
-.spinner{
+:is(button, a).is-loading {
+    position: relative;
+    cursor: progress;
+}
+:is(button, a).is-loading > * {
+    visibility: hidden;
+}
+:is(button, a).is-loading::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
     width: 20px;
     height: 20px;
     border: 2px solid rgba(255, 255, 255, 0.3);
-    border-top-color: #fff;
+    border-top-color: currentColor;
     border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    display: none;
-    margin: auto;
+    transform: translate(-50%, -50%);
+    animation: button-spinner-spin 0.8s linear infinite;
+    pointer-events: none;
 }
-@keyframes spin {
-    to { transform: rotate(360deg); }
+button.is-loading:disabled {
+    opacity: 1;
+    filter: none;
 }
-#start-button.is-loading #btn-text{
-    display: none;
+#send-button.is-loading::after {
+    width: 17px;
+    height: 17px;
+    border-color: rgba(32, 35, 23, 0.3);
+    border-top-color: #202317;
 }
-#start-button.is-loading #btn-spinner{
-    display: block;
+@keyframes button-spinner-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 a{
     color: var(--color-text);

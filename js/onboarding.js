@@ -7,10 +7,11 @@ document.addEventListener('DOMContentLoaded', () => {
   screens.forEach((s, i) => s.classList.toggle('active', i === current));
   history.replaceState({ idx: current }, '', `#step-${current + 1}`);
 
-  function showScreen(idx, push = true) {
+  function showScreen(idx, push = true, allowLoading = false) {
     if (idx === current || idx < 0 || idx >= screens.length) return;
     const prev = screens[current];
     const next = screens[idx];
+    if (next.id === 'loading' && !allowLoading) return;
 
     if (prev) {
       prev.classList.remove('active');
@@ -62,10 +63,15 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       if (btn.disabled) return;
       btn.disabled = true;
-      const spinner = btn.querySelector('.spinner');
-      if (spinner) spinner.classList.add('spinning');
-      showScreen(Math.min(i + 1, screens.length - 1), true);
-      setTimeout(() => { if (spinner) spinner.classList.remove('spinning'); }, 600);
+      btn.classList.add('is-loading');
+      btn.setAttribute('aria-busy', 'true');
+
+      setTimeout(() => {
+        btn.classList.remove('is-loading');
+        btn.removeAttribute('aria-busy');
+        btn.disabled = false;
+        showScreen(Math.min(i + 1, screens.length - 1), true, screen.id === 'onboarding-5');
+      }, 350);
     });
   });
 
@@ -80,14 +86,12 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// redirect to task.html 5s after showing step 5 (index 4)
+// redirect to task.html 5s after showing the loading screen
 let _redirectTimer = null;
 function scheduleRedirectIfStep5(idx) {
   clearTimeout(_redirectTimer);
   const screens = Array.from(document.querySelectorAll('.screen'));
-  const isLast = screens.length && idx === screens.length - 1;
-  const isStep5 = idx === 4 || isLast || (screens[idx] && screens[idx].id === 'loading');
-  if (isStep5) {
+  if (screens[idx] && screens[idx].id === 'loading') {
     // update loading screen name from saved name or current input
     const name = (function() {
       try { return localStorage.getItem('claro_name') || document.querySelector('#txt-input')?.value || 'Friend'; } catch (e) { return document.querySelector('#txt-input')?.value || 'Friend'; }

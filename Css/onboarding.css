@@ -127,12 +127,19 @@ progress::-webkit-progress-bar {
 .load-ring {
     width: 90px;
     height: 90px;
+    margin: 32px auto;
+    position: relative;
+}
+
+.load-ring::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    box-sizing: border-box;
     border: 3px solid #333;
     border-top-color: #c8f560;
     border-radius: 50%;
     animation: spin 1s linear infinite;
-    margin: 32px auto;
-    position: relative;
 }
 
 .load-ring > div {
@@ -141,7 +148,6 @@ progress::-webkit-progress-bar {
     display: flex;
     align-items: center;
     justify-content: center;
-    animation: spinReverse 1s linear infinite;
 }
 
 #load-icon {
@@ -151,12 +157,9 @@ progress::-webkit-progress-bar {
     animation: none;
 }
 
-@keyframes spinReverse {
-    from {
-        transform: rotate(360deg);
-    }
+@keyframes spin {
     to {
-        transform: rotate(0deg);
+        transform: rotate(360deg);
     }
 }
 .txt-7{

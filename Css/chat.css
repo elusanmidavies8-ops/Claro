@@ -499,24 +499,6 @@ textarea:focus-visible {
 	transform: translateY(-1px);
 }
 
-.send-spinner {
-	display: none;
-	width: 17px;
-	height: 17px;
-	border: 2px solid rgba(32, 35, 23, 0.3);
-	border-top-color: #202317;
-	border-radius: 50%;
-	animation: spin 700ms linear infinite;
-}
-
-.send-button.is-loading .send-icon {
-	display: none;
-}
-
-.send-button.is-loading .send-spinner {
-	display: block;
-}
-
 .composer-disclaimer {
 	margin: 10px 0 0;
 	color: #66685f;
