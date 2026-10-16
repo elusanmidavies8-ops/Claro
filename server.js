@@ -1,14 +1,10 @@
+
 require("dotenv").config();
 
 const express = require("express");
-const { GoogleGenAI } = require("@google/genai");
 
 const app = express();
 const PORT = 3000;
-
-const ai = new GoogleGenAI({
-  apiKey: process.env.GEMINI_API_KEY,
-});
 
 app.use(express.json());
 app.use(express.static(__dirname));
@@ -23,39 +19,63 @@ app.post("/api/chat", async (req, res) => {
       });
     }
 
-    let response;
-
-    for (let attempt = 0; attempt < 3; attempt++) {
-      try {
-        response = await ai.models.generateContent({
-          model: "gemini-3.5-flash-lite",
-          contents: message,
-        });
-
-        break;
-      } catch (error) {
-        const status = Number(error.status || error.code);
-        const temporary = [429, 500, 502, 503, 504].includes(status);
-
-        if (!temporary || attempt === 2) {
-          throw error;
-        }
-
-        const delay = 1000 * (2 ** attempt);
-
-        console.log(
-         `Gemini temporarily unavailable. Retrying in ${delay / 1000}s...`
-        );
-
-        await new Promise(resolve => setTimeout(resolve, delay));
-      }
+    if (!process.env.OPENROUTER_API_KEY) {
+      return res.status(500).json({
+        error: "OpenRouter API key is not configured.",
+      });
     }
 
-    res.json({
-      reply: response.text,
-    });
+    const response = await fetch(
+      "https://openrouter.ai/api/v1/chat/completions",
+      {
+        method: "POST",
+        headers: {
+          "Authorization": `Bearer ${process.env.OPENROUTER_API_KEY}`,
+          "Content-Type": "application/json",
+          "X-OpenRouter-Title": "Claro",
+        },
+        body: JSON.stringify({
+          model: "openrouter/auto",
+          messages: [
+            {
+              role: "system",
+              content:
+                "You are Claro, a friendly and practical personal guide. " +
+                "Help users plan, learn, organize tasks, and make progress. " +
+                "Be clear, supportive, and honest.",
+            },
+            {
+              role: "user",
+              content: message,
+            },
+          ],
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      console.error("OpenRouter API error:", data);
+
+      return res.status(response.status).json({
+        error:
+          data.error?.message ||
+          "OpenRouter could not generate a response.",
+      });
+    }
+
+    const reply = data.choices?.[0]?.message?.content;
+
+    if (!reply) {
+      return res.status(502).json({
+        error: "OpenRouter returned an empty response.",
+      });
+    }
+
+    res.json({ reply });
   } catch (error) {
-    console.error("Gemini API error:", error);
+    console.error("Claro server error:", error);
 
     res.status(500).json({
       error: "Sorry, Claro could not generate a response.",
@@ -66,3 +86,4 @@ app.post("/api/chat", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Claro server running at http://localhost:${PORT}`);
 });
+
