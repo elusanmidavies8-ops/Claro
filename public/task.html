@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Claro — Tasks</title>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=jetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Css/tokens.css">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png">
+        <link rel="stylesheet" href="Css/tasks.css">
+        <link rel="stylesheet" href="Css/global.css">
+    </head>
+    <body>
+        <main class="task-shell">
+            <header class="task-header">
+                <a class="task-brand" href="index.html" aria-label="Claro home">
+                    <img src="assets/logo.png" alt="">
+                    <span>claro</span>
+                </a>
+
+                <nav class="task-nav" aria-label="Workspace">
+                    <a class="active" href="task.html" aria-current="page">
+                        <span aria-hidden="true">◷</span> My day
+                    </a>
+                    <a href="chat.html">
+                        <span aria-hidden="true">◌</span> Coach chat
+                    </a>
+                </nav>
+            </header>
+            <div id="greetings"></div>
+            <div id="onboarding-7" class="screen"></div>
+        </main>
+
+        <script src="js/tasks.js"></script>
+    </body>
+</html>

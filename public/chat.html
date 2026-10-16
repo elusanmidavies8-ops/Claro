@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Claro — Chat</title>
+        <link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@300;400;500;600&family=jetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="Css/tokens.css">
+        <link rel="stylesheet" href="Css/global.css">
+        <link rel="stylesheet" href="Css/chat.css">
+    </head>
+    <body>
+        <main class="chat-shell">
+            <aside class="chat-sidebar" aria-label="Main navigation">
+                <a class="brand" href="index.html" aria-label="Claro home">
+                    <img src="assets/logo.png" alt="">
+                    <span>claro</span>
+                </a>
+
+                <button class="new-chat-button" id="new-chat" type="button">
+                    <span aria-hidden="true">+</span>
+                    New conversation
+                </button>
+
+                <nav class="primary-nav" aria-label="Workspace">
+                    <a href="task.html"><span aria-hidden="true">◷</span> My day</a>
+                    <a class="active" href="chat.html" aria-current="page"><span aria-hidden="true">◌</span> Coach chat</a>
+                </nav>
+
+                <div class="sidebar-note">
+                    <span class="note-mark" aria-hidden="true">✳</span>
+                    <p>A little clarity goes a long way.</p>
+                </div>
+
+                <div class="profile-row">
+                    <span class="profile-avatar" id="profile-avatar" aria-hidden="true">F</span>
+                    <span class="profile-name" id="profile-name">Friend</span>
+                    <span class="profile-caption">Your space</span>
+                </div>
+            </aside>
+
+            <section class="chat-workspace" aria-label="Coach conversation">
+                <header class="chat-topbar">
+                    <div class="coach-presence">
+                        <span class="presence-dot" aria-hidden="true"></span>
+                        <div>
+                            <h1>Claro coach</h1>
+                            <p>Here to help you find your next step</p>
+                        </div>
+                    </div>
+                    <span class="topbar-label">PERSONAL SPACE</span>
+                </header>
+
+                <div class="chat-content" id="chat-root">
+                    <div class="conversation" id="conversation" role="log" aria-live="polite" aria-relevant="additions text" aria-label="Conversation"></div>
+                    <div class="suggestions" id="suggestions" aria-label="Suggested messages">
+                        <p class="suggestion-label">A place to start</p>
+                        <div class="suggestion-list">
+                            <button type="button" data-prompt="Help me make a realistic plan for today">Make a plan for today <span aria-hidden="true">↗</span></button>
+                            <button type="button" data-prompt="I feel overwhelmed and need help choosing a first step">Find my first step <span aria-hidden="true">↗</span></button>
+                            <button type="button" data-prompt="Help me get focused on my most important task">Get focused <span aria-hidden="true">↗</span></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="composer-area">
+                    <form class="composer" id="chat-form">
+                        <label class="visually-hidden" for="message-input">Your message</label>
+                        <textarea id="message-input" rows="1" placeholder="Tell me what's on your mind..." maxlength="2000"></textarea>
+                        <div class="composer-controls">
+                            <span class="composer-hint">Enter to send <span aria-hidden="true">·</span> Shift + Enter for a new line</span>
+                            <button class="send-button" id="send-button" type="submit" aria-label="Send message" disabled>
+                                <span class="send-icon" aria-hidden="true">↑</span>
+                            </button>
+                        </div>
+                    </form>
+                    <p class="composer-disclaimer">A thoughtful space to plan, reflect, and reset.</p>
+                </div>
+            </section>
+        </main>
+
+        <script src="js/chat.js"></script>
+    </body>
+</html>
